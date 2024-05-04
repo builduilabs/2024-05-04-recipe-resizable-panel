@@ -4,7 +4,7 @@ import * as ResizablePanel from "./resizable-panel";
 import { ArrowPathIcon } from "@heroicons/react/16/solid";
 
 export default function Page() {
-  let [active, setActive] = useState("a");
+  let [state, setState] = useState("form");
   let [isSending, setIsSending] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ export default function Page() {
       <div className="absolute right-4 top-4">
         <button
           className="text-gray-600 transition hover:text-gray-300"
-          onClick={() => setActive("a")}
+          onClick={() => setState("form")}
         >
           <ArrowPathIcon className="size-5" />
         </button>
@@ -21,8 +21,8 @@ export default function Page() {
       <div className="px-4">
         <div className="mx-auto max-w-md pt-16 sm:pt-12 md:pt-20">
           <div className="rounded-lg bg-gray-700 shadow-md shadow-black/30">
-            <ResizablePanel.Root active={active} className="px-4 py-8 md:p-8">
-              <ResizablePanel.Content value="a">
+            <ResizablePanel.Root value={state} className="px-4 py-8 md:p-8">
+              <ResizablePanel.Content value="form">
                 <p className="font-semibold text-white md:text-xl">
                   Reset password
                 </p>
@@ -42,7 +42,7 @@ export default function Page() {
                     onClick={async () => {
                       setIsSending(true);
                       await new Promise((resolve) => setTimeout(resolve, 1000));
-                      setActive("b");
+                      setState("success");
                       setIsSending(false);
                     }}
                     disabled={isSending}
@@ -52,7 +52,7 @@ export default function Page() {
                   </button>
                 </div>
               </ResizablePanel.Content>
-              <ResizablePanel.Content value="b">
+              <ResizablePanel.Content value="success">
                 <p className="font-semibold text-white md:text-xl">
                   Email sent!
                 </p>

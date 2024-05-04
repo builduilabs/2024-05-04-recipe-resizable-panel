@@ -4,15 +4,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ComponentProps, ReactNode, createContext, useContext } from "react";
 import useMeasure from "react-use-measure";
 
-let PanelContext = createContext({ active: "" });
+let PanelContext = createContext({ value: "" });
 
 export function Root({
   children,
-  active,
+  value,
   ...rest
 }: {
   children: ReactNode;
-  active: string;
+  value: string;
 } & ComponentProps<"div">) {
   let [ref, bounds] = useMeasure();
 
@@ -23,7 +23,7 @@ export function Root({
       style={{ overflow: "hidden", position: "relative" }}
     >
       <div ref={ref}>
-        <PanelContext.Provider value={{ active }}>
+        <PanelContext.Provider value={{ value }}>
           <div {...rest}>{children}</div>
         </PanelContext.Provider>
       </div>
@@ -39,8 +39,8 @@ export function Content({
   value: string;
   children: ReactNode;
 } & ComponentProps<"div">) {
-  let { active } = useContext(PanelContext);
-  let isActive = active === value;
+  let panelContext = useContext(PanelContext);
+  let isActive = panelContext.value === value;
 
   return (
     <AnimatePresence mode="popLayout" initial={false}>
