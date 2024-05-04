@@ -94,50 +94,56 @@ export default function ResizablePanel() {
         </button>
       </div>
 
-      <div className="mx-auto max-w-md pt-20">
-        <div className="rounded-lg bg-gray-700 shadow-md shadow-black/30">
-          <PanelRoot active={active} className="p-8">
-            <PanelContent value="a">
-              <p className="text-xl font-semibold text-white">Reset password</p>
-              <p className="mt-2 text-sm text-gray-300">
-                Enter your email to get a password reset link.
-              </p>
-              <label className="mt-8 block text-sm font-medium text-white">
-                Email address
-                <input
-                  type="text"
-                  defaultValue="sam@buildui.com"
-                  className="focus-visible:border-brand focus-visible:outline-brand mt-2 w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 focus-visible:outline"
-                />
-              </label>
-              <div className="mt-6 text-right">
-                <button
-                  onClick={async () => {
-                    setIsSending(true);
-                    await new Promise((resolve) => setTimeout(resolve, 1000));
-                    setActive("b");
-                    setIsSending(false);
-                  }}
-                  disabled={isSending}
-                  className="bg-brand hover:bg-brand-light rounded-md px-3 py-2 text-sm font-semibold text-white disabled:pointer-events-none"
-                >
-                  <Spinner isLoading={isSending}>Reset your password</Spinner>
-                </button>
-              </div>
-            </PanelContent>
-            <PanelContent value="b">
-              <p className="text-xl font-semibold text-white">Email sent!</p>
-              <p className="mt-2 text-sm text-gray-300">
-                Check your inbox to continue.
-              </p>
-            </PanelContent>
-          </PanelRoot>
-        </div>
-        <div className="mt-6">
-          <p className="text-sm text-gray-500">
-            <span className="underline">Reach out</span> to us if you need more
-            help.
-          </p>
+      <div className="px-4">
+        <div className="mx-auto max-w-md pt-16 sm:pt-12 md:pt-20">
+          <div className="rounded-lg bg-gray-700 shadow-md shadow-black/30">
+            <PanelRoot active={active} className="px-4 py-8 md:p-8">
+              <PanelContent value="a">
+                <p className="font-semibold text-white md:text-xl">
+                  Reset password
+                </p>
+                <p className="mt-2 text-xs text-gray-300 md:text-sm">
+                  Enter your email to get a password reset link.
+                </p>
+                <label className="mt-8 block text-sm font-medium text-white">
+                  Email address
+                  <input
+                    type="text"
+                    defaultValue="sam@buildui.com"
+                    className="focus-visible:border-brand focus-visible:outline-brand mt-2 w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 focus-visible:outline"
+                  />
+                </label>
+                <div className="mt-6 text-right">
+                  <button
+                    onClick={async () => {
+                      setIsSending(true);
+                      await new Promise((resolve) => setTimeout(resolve, 1000));
+                      setActive("b");
+                      setIsSending(false);
+                    }}
+                    disabled={isSending}
+                    className="bg-brand hover:bg-brand-light rounded-md px-3 py-2 text-xs font-semibold text-white disabled:pointer-events-none md:text-sm"
+                  >
+                    <Spinner isLoading={isSending}>Reset your password</Spinner>
+                  </button>
+                </div>
+              </PanelContent>
+              <PanelContent value="b">
+                <p className="font-semibold text-white md:text-xl">
+                  Email sent!
+                </p>
+                <p className="mt-2 text-xs text-gray-300 md:text-sm">
+                  Check your inbox to continue.
+                </p>
+              </PanelContent>
+            </PanelRoot>
+          </div>
+          <div className="mt-6">
+            <p className="text-xs text-gray-500 md:text-sm">
+              <span className="underline">Reach out</span> to us if you need
+              more help.
+            </p>
+          </div>
         </div>
       </div>
     </div>
