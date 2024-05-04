@@ -10,7 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: "#6479f2",
+        brand: {
+          DEFAULT: "#6479f2",
+          light: "#8293f8",
+        },
         gray: colors.slate,
       },
     },

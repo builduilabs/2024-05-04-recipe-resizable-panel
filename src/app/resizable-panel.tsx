@@ -87,15 +87,15 @@ export default function ResizablePanel() {
     <div className="relative">
       <div className="absolute right-4 top-4">
         <button
-          className="text-gray-500 hover:text-gray-200"
+          className="text-gray-600 transition hover:text-gray-300"
           onClick={() => setActive("a")}
         >
           <ArrowPathIcon className="size-5" />
         </button>
       </div>
 
-      <div className="mx-auto max-w-md pt-16">
-        <div className="rounded-lg bg-gray-700 shadow-lg shadow-black/75">
+      <div className="mx-auto max-w-md pt-20">
+        <div className="rounded-lg bg-gray-700 shadow-md shadow-black/30">
           <PanelRoot active={active} className="p-8">
             <PanelContent value="a">
               <p className="text-xl font-semibold text-white">Reset password</p>
@@ -119,7 +119,7 @@ export default function ResizablePanel() {
                     setIsSending(false);
                   }}
                   disabled={isSending}
-                  className="bg-brand rounded-md px-3 py-2 text-sm font-semibold text-white"
+                  className="bg-brand hover:bg-brand-light rounded-md px-3 py-2 text-sm font-semibold text-white disabled:pointer-events-none"
                 >
                   <Spinner isLoading={isSending}>Reset your password</Spinner>
                 </button>
