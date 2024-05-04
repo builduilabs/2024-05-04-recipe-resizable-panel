@@ -24,34 +24,43 @@ export default function Page() {
           <div className="rounded-lg bg-gray-700 shadow-md shadow-black/30">
             <ResizablePanel.Root value={state} className="px-4 py-8 md:p-8">
               <ResizablePanel.Content value="form">
-                <p className="font-semibold text-white md:text-xl">
-                  Reset password
-                </p>
-                <p className="mt-2 text-xs text-gray-300 md:text-sm">
-                  Enter your email to get a password reset link.
-                </p>
-                <label className="mt-8 block text-sm font-medium text-white">
-                  Email address
-                  <input
-                    type="text"
-                    defaultValue="sam@buildui.com"
-                    className="focus-visible:border-brand focus-visible:outline-brand mt-2 w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 focus-visible:outline"
-                  />
-                </label>
-                <div className="mt-6 text-right">
-                  <button
-                    onClick={async () => {
-                      setIsSending(true);
-                      await new Promise((resolve) => setTimeout(resolve, 1000));
-                      setState("success");
-                      setIsSending(false);
-                    }}
-                    disabled={isSending}
-                    className="bg-brand hover:bg-brand-light rounded-md px-3 py-2 text-xs font-semibold text-white disabled:pointer-events-none md:text-sm"
-                  >
-                    <Spinner isLoading={isSending}>Reset your password</Spinner>
-                  </button>
-                </div>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsSending(true);
+                    await new Promise((resolve) => setTimeout(resolve, 1000));
+                    setState("success");
+                    setIsSending(false);
+                  }}
+                >
+                  <fieldset disabled={isSending}>
+                    <p className="font-semibold text-white md:text-xl">
+                      Reset password
+                    </p>
+                    <p className="mt-2 text-xs text-gray-300 md:text-sm">
+                      Enter your email to get a password reset link.
+                    </p>
+                    <label className="mt-8 block text-sm font-medium text-white">
+                      Email address
+                      <input
+                        type="text"
+                        defaultValue="sam@buildui.com"
+                        className="focus-visible:border-brand focus-visible:outline-brand mt-2 w-full rounded-lg border border-gray-600 bg-gray-800 px-3 py-2 focus-visible:outline"
+                      />
+                    </label>
+                    <div className="mt-6 text-right">
+                      <button
+                        disabled={isSending}
+                        type="submit"
+                        className="bg-brand hover:bg-brand-light rounded-md px-3 py-2 text-xs font-semibold text-white disabled:pointer-events-none md:text-sm"
+                      >
+                        <Spinner isLoading={isSending}>
+                          Reset your password
+                        </Spinner>
+                      </button>
+                    </div>
+                  </fieldset>
+                </form>
               </ResizablePanel.Content>
               <ResizablePanel.Content value="success">
                 <p className="font-semibold text-white md:text-xl">
